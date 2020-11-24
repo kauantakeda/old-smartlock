@@ -1,0 +1,118 @@
+{% extends "./lock.html" %}{% block locks_content %}
+{% block extra_header %}
+<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+<!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/> -->
+{% endblock %}
+<div class="container-fluid">
+  <div class="row" style="margin-top:25px;width:100%;">
+    <div class="col col-sm-2" >
+      <img src="/static/SmartlockLogoNoName.png" class="img-thumbnail" alt="...">
+    </div>
+    <div class="col d-flex" style="margin-left:25px;">
+      <form method="post" style="width: 100%;">
+        {% csrf_token %}
+        <div class="row" style="width: 100%;margin-bottom: 0px;">
+          <p>Name</p>
+        </div>
+        <div class="row" style="margin-bottom: 5px;margin-top: 0px;">
+          {{ form.name }}
+        </div>
+        <div class="row">
+          <p style="margin-bottom: 5px;">Timezone</p>
+        </div>
+        <div class="row" style="margin-bottom: 5px;">
+          {{ form.tmzn }}
+        </div>
+        <div class="row">
+          <p style="margin-bottom: 5px;">ID</p>
+        </div>
+        <div class="row" style="margin-bottom: 20px;width: 100%;">
+          <div class="col">
+            {{ form.ruid }}
+          </div>
+          <div class="col" style="display: flex;justify-content: flex-end;">
+            <a href="{% url 'smartlock:del_lock' pk=form.instance.pk %}">
+              <button class="btn btn-danger align-self-center" type="button" id="button-addon2">Delete</button>
+            </a>
+            <button class="btn btn-primary" id="btn_copy_ruid" type="button" style="margin-left:10px;" >Copy RUID</button> <span id="div_confirm_copy_ruid"></span>
+            <button type="submit" style="margin-left:10px;" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row" style="max-height: 30px; margin-bottom: 30px; font-size: 20px; font-weight: 600;">
+    <p>Permissões</p>
+  </div>
+  <form method="post" style="margin-top: 20px;">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <div style=" overflow: auto;">
+      <table class="table" style="width: 100% !important; overflow-x: scroll;font-size:15px">
+        {% for form in formset %}
+        {% if forloop.first %}
+        <thead><tr class="formset">
+            {% if formset.can_delete %}
+            <th class="formset">{% comment %}Delete{% endcomment %}</th>
+            {% endif %}
+            {% for field in form.visible_fields %}
+            {% if field.label != 'Delete' and field.label != 'Lock' %}
+            <th class="formset">{{ field.label }}</th>
+            {% endif %}
+            {% endfor %}
+        </tr></thead>
+        {% endif %}
+        <tr class="formset">
+          <td class="formset">
+            {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+            {% if not forloop.last %}
+            {% if formset.can_delete %}Delete? {{ form.DELETE }}{% endif %}
+            {% else %}
+            New
+            {% endif %}
+          </td>
+          {% for field in form.visible_fields %}
+          {% if field != form.DELETE and field != form.lockcomposite %}
+          <td class="formset">{{ field }}{% if field.errors %}<br>{{ field.errors.as_text }}{% endif %}</td>
+          {% endif %}
+          {% endfor %}
+        </tr>
+        {% if form.non_field_errors %}<tr class="formset"><td colspan="{{ form.visible_fields | length }}">
+            &rdsh;{{ form.non_field_errors.as_text }}</td></tr>{% endif %}
+        {% endfor %}
+      </table>
+    </div>
+    <div class="row" style="justify-content: flex-end;">
+      <button type="submit" class="btn btn-primary" style="margin-bottom:30px; margin-top:10px">Update, delete, add new schedule</button>
+    </div>
+  </form>
+
+  <div class="row" style="max-height: 30px; margin-bottom: 30px; font-size: 20px; font-weight: 600;">
+    <p>Lock Group permission for this lock</p>
+  </div>
+  <div class="row" style="margin-bottom: 30px;">
+    {% include "./extra_schedules.html" %}
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+  tr.formset,th.formset,td.formset {text-align: center;
+                                    border: 1px solid #333;}
+  select {max-width: 10em;}
+</style>
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+{{ formset.media }}
+
+<script>
+  function copy_ruid() {
+      document.querySelector("#id_ruid").select();
+      document.execCommand("copy");
+      document.querySelector("#div_confirm_copy_ruid").innerText = "→ RUID copied";
+  }
+  document.querySelector("#btn_copy_ruid").addEventListener("click", copy_ruid);
+</script>
+
+{% endblock %}

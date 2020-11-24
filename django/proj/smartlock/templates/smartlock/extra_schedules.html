@@ -1,0 +1,30 @@
+{% if extra_schedules and extra_schedules.entries|length > 0 %}
+<div style=" overflow: auto;">
+  <table class="table" style="width: 100% !important; overflow-x: scroll; font-size:15px">
+    <thead><tr class="formset">
+        {% for verbose_name in extra_schedules.verbose_names %}
+        <th class="formset">{{ verbose_name | capfirst }}</th>
+        {% endfor %}
+    </tr></thead>
+    {% for entry in extra_schedules.entries %}
+    <tr class="formset">
+      {% for value in entry %}
+      <td class="formset">
+        {% if value is None or value is False %}
+        <!-- empty -->
+        {% elif value is True %}
+        &#10003;
+        {% elif not value.pk %}
+        {{ value }}
+        {% else %}
+        {{ value.name }}
+        {% endif %}
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% else %}
+No permissions found.
+{% endif %}

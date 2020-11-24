@@ -1,0 +1,46 @@
+{% extends "./unlockattemptlog.html" %}{% block logs_content %}
+
+<div class="container-fluid" >
+  <div class="row" style="padding-top:25px; width:100%;">
+    <div class="col col-sm-5 input-group mb-3">
+      <input type="text" class="form-control" placeholder="Busca" aria-label="search" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+      </div>
+    </div>
+  </div>
+  <div class="row flex-grow-1" >
+    <div class="col flex-grow-1" style="padding-top:5px; width:50%;">
+      <div class="row flex-grow-1 list-group" style="padding-top:25px;">
+        <table class="table">
+          <tr>
+            <th>Time</th>
+            <th>Lock RUID</th>
+            <th>Lock</th>
+            <th>RFID</th>
+            <th>Username</th>
+            <th>Authorized</th>
+          </tr>
+          {% for log in object_list %}
+          <tr>
+            <td>{{ log.time }}</td>
+            <td>{{ log.ruid }}</td>
+            <td>{% if log.lock %}{{ log.lock.name }}{% endif %}</td>
+            <td>{{ log.rfid }}</td>
+            <td>{% if log.userdata %}{{ log.userdata.user.username }}{% endif %}</td>
+            <td>{% if log.succ %}&#10003;{% endif %}</td>
+          </tr>
+          {% empty %}
+          <tr><td>No logs registered.</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+  tr,th,td {text-align: center;
+            border: 1px solid #333;}
+</style>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "./lockgroup.html" %}{% block lock_groups_content %}
+<div class="container-fluid">
+  <div class="col" style="padding-top:25px; width:50%;">
+    <form action="{% url 'smartlock:new_lock_group' %}" method="post">
+      {% csrf_token %}
+      <div class="col col-sm-6 mt-auto">
+        <div class="row" style="margin-bottom: 0px;margin-top: 0px;">
+          <p>Nome</p>
+        </div>
+        <div class="row" style="margin-bottom: 5px;margin-top: 0px;">
+          {{ form.name }}
+        </div>
+        <div class="row" style="margin-bottom: 5px;margin-top: 15px;">
+          <p>Fechaduras</p>
+        </div>
+        <div class="row" style="margin-bottom: 15px;">
+          {{ form.grup }}
+        </div>
+        <div class="row">
+          <button type="submit" class="btn btn-primary">Adicionar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

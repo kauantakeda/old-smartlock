@@ -1,0 +1,14 @@
+{% extends "./index.html" %}{% block content %}
+<div class="container-fluid" style="margin-left: 5px;">
+<div class="row" style="max-height: 30px; margin-top: 25px; margin-bottom: 30px; font-size: 20px; font-weight: 600;">
+  <p>My permissions</p>
+</div>
+{% include "./extra_schedules.html" %}
+
+<style type="text/css" media="screen">
+  tr.formset,th.formset,td.formset {text-align: center;
+                                    border: 1px solid #333;}
+  select {max-width: 10em;}
+</style>
+
+{% endblock %}

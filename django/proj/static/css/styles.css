@@ -1,0 +1,138 @@
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar {
+    background-color: #A1E0A7;
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+}
+
+.navbar .navbar-brand {
+    /* color: #FFF; */
+}
+
+.navbar .navbar-brand:hover {
+    color: #FFF;
+}
+
+.navbar .nav-item .nav-link {
+    /* color: #FFF; */
+    transition: .5s;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.navbar .nav-item .nav-link:hover {
+    text-decoration: underline;
+    /* color:#29AB87; */
+}
+
+/* .active { */
+/*     color:#000; */
+/* } */
+
+.navbar-nav>li.nav-item.active>a.nav-link{
+    text-decoration: underline;
+}
+
+.card {
+    margin: auto;
+    border-radius: 0;
+}
+
+.card-img-top {
+    border-radius: 0;
+}
+
+.card .btn-primary {
+    background-color: #29AB87;
+    border-color: #29AB87;
+}
+
+.card .btn-primary:hover {
+    background-color: #FFF;
+    color: #29AB87;
+}
+
+.row .jumbotron {
+    background-color: #00A572;
+    color: #FFF;
+    margin-top: 50px;
+}
+
+.card .btn.btn-primary {
+    margin: auto;
+    display: block;
+}
+
+.theme-color {
+    background-color: #A1E0A7;
+}
+
+.site-container {
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    top: 0;
+}
+
+.logo-shadow {
+    width: 350px;
+    height: 350px;
+    background-color: #494949;
+    border-radius:50%;
+    box-shadow:  0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.theme-button {
+    background-color:#FFF;
+    padding-left:25px;
+    padding-right:25px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color: #000000;
+    font-size: 18px;
+}
+
+.theme-button:hover {
+    background-color:rgb(32, 87, 32);
+    color: #fff;
+}
+
+a, a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.card-img-top {
+    border-bottom: thin solid #949494;
+}
+
+.btn-block {
+    padding: 2% 0;
+}
+
+.selector-available {
+    display: flex;
+    flex-direction: column;
+    /* margin: 0 auto; */
+    /* color: #FF1494; */
+    justify-content : 'center';
+}
+
+.selector select {
+    max-width: 100%;
+}

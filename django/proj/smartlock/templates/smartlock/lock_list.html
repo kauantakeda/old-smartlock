@@ -1,0 +1,43 @@
+{% extends "./lock.html" %}{% block locks_content %}
+<div class="container-fluid">
+  <div class="row" style="padding-top:25px; width:100%;">
+    <div class="col col-sm-5 input-group mb-3">
+      <input type="text" class="form-control" placeholder="Busca" aria-label="search"
+             aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+      </div>
+    </div>
+    <div class="col col-sm-2 input-group mb-3" style="margin-left:50px;">
+      <a href="{% url 'smartlock:new_lock' %}">
+        <button class="btn btn-success" type="button" id="button-addon2">Adicionar</button></a>
+    </div>
+  </div>
+  <div class="row flex-grow-1" >
+    <div class="col flex-grow-1" style="padding-top:5px; width:50%;">
+      <div class="row flex-grow-1" style="padding-top:25px;">
+        {% for lock in object_list %}
+        <div class="col-sm-6 col-xs-12 col-md-4 col-lg-3" style="min-width: 250px; margin-bottom:30px">
+          <div class="card h-100"  >
+            <img src="/static/SmartlockLogoNoName.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ lock.name }}</h5>
+              <p class="card-text">
+                Timezone: {{ lock.tmzn }} <br/>
+                RUID: {{ lock.ruid }}
+              </p>
+            </div>
+            <div class="card-footer">
+              <a href="{% url 'smartlock:lock' pk=lock.pk %}" class="btn btn-primary">
+                Ver detalhes</a>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        No locks added.
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

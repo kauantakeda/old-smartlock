@@ -1,0 +1,13 @@
+{% extends "./lockpermission.html" %}{% block lockpermission_content %}
+<div class="container-fluid">
+  <div class="col" style="padding-top:25px; width:50%;">
+    <form method="post">
+      {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <button type="submit" class="btn btn-primary">Adicionar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

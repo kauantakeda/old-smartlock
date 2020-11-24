@@ -1,0 +1,63 @@
+{% extends "./lockpermission.html" %}{% block lockpermission_content %}
+<div class="container-fluid">
+  <div class="row" style="padding-top:25px; width:100%;">
+    <div class="col col-sm-5 input-group mb-3">
+      <input type="text" class="form-control" placeholder="Busca" aria-label="search"
+             aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+      </div>
+    </div>
+    <div class="col col-sm-2 input-group mb-3" style="margin-left:50px;">
+      <a href="{% url 'smartlock:lockpermission_new' %}">
+        <button class="btn btn-success" type="button" id="button-addon2">Adicionar</button></a>
+    </div>
+  </div>
+  <div class="row flex-grow-1" >
+    <div class="col col-lg-6 col-md-3 col-sm-3" style="padding-top:5px;">
+      <table class="table">
+        <thead>
+          <th colspan="2">Users</th>
+          <th colspan="2">Locks</th>
+          <th colspan="1">Details</th>
+        </thead>
+        <tbody>
+          {% for lp in object_list %}
+          <tr>
+            <th scope="row">
+              {% if lp.userdata %}Usuário{% elif lp.userdatagrup %}Grupo de Usuários{% endif %}</th>
+            <td>
+              {% if lp.userdata %}
+              {{ lp.userdata.user.username }}
+              {% elif lp.userdatagrup %}
+              {{ lp.userdatagrup.name }}
+              {% endif %}
+            </td>
+            <th scope="row">
+              {% if lp.lock %}Fechadura{% elif lp.lockgrup %}Grupo de Fechaduras{% endif %}
+            </th>
+            <td>
+              {% if lp.lock %}
+              {{ lp.lock.name }}
+              {% elif lp.lockgrup %}
+              {{ lp.lockgrup.name }}
+              {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'smartlock:lockpermission' pk=lp.pk %}">Details</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td>No permissions registered.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+  tr,th,td {text-align: center;
+            border: 1px solid #333;}
+</style>
+{% endblock %}

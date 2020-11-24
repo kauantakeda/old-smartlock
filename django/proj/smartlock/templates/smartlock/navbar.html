@@ -1,0 +1,27 @@
+<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light shadow-lg">
+
+  <a class="navbar-brand" href="{% url 'smartlock:index' %}">
+    <img src="/static/SmartlockLogoNoName.png" style="margin:0 auto; width:50px; height:50px;"
+         class="img-responsive center-block logo-shadow" alt="...">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {{ home_page }}">
+        <a class="nav-link" href="{% url 'smartlock:index' %}">Principal</a>
+      </li>
+      <li class="nav-item {{ account_page }}">
+        <a class="nav-link" href="{% url 'smartlock:account' %}">Conta</a>
+      </li>
+      <li class="nav-item {{ manage_page }}">
+        <a class="nav-link" href="{% url 'smartlock:manage' %}">Gerenciamento</a>
+      </li>
+    </ul>
+    <a href="{% url 'logout' %}?next={% url 'smartlock:index' %}">
+      <button class="btn my-2 my-sm-0 theme-button" type="submit">SAIR</button></a>
+  </div>
+</nav>

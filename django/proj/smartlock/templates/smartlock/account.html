@@ -1,0 +1,33 @@
+{% extends "./index.html" %}{% block content %}
+<div class="container-fluid" style="padding-left:30px;padding-right:30px">
+  <div class="col" style="padding-top:25px; width:50%;">
+    <label class="row" for="exampleInputEmail1">Alterar Nome</label>
+    <form class="row">
+      <div class="form-group col col-sm-6">
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
+      </div>
+      <div class="col" style="margin-left:15px;">
+        <button type="submit" class="btn btn-primary">Alterar</button>
+      </div>
+    </form>
+  </div>
+  <div class="col" style="padding-top:25px; width:50%;">
+    <label class="row" for="exampleInputEmail1">Alterar Senha</label>
+    <form class="col">
+      <div class="row">
+        <div class="form-group col col-sm-6">
+          <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="passwordHelp" placeholder="Nova senha">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col col-sm-6">
+          <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="passwordHelp" placeholder="Repita nova senha">
+        </div>
+        <div class="col" style="margin-left:15px;">
+          <button type="submit" class="btn btn-primary">Alterar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

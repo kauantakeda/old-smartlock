@@ -1,0 +1,14 @@
+{% extends "./index.html" %}{% block content %}
+<div class="container-fluid" style="padding-top:25px;">
+  {% include './tabs.html' %}
+  {% block manage_content %}{% endblock %}
+</div>
+<script>
+  $(document).ready(function(){
+      $('.nav .nav-tabs').click(function(){
+          $('.navbar-nav .nav-item').removeClass('active');
+          $(this).addClass('active');
+      })
+  });
+</script>
+{% endblock %}
